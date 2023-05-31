@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="com.teguh.pokelist.ui.view.detail_pokemon.DetailPokemonViewModel" />
+    </data>
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#2B292B">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:descendantFocusability="blocksDescendants">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="12dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="6dp"
+                android:translationZ="100dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/header"
+                app:srcCompat="@drawable/ic_arrow" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="36dp"
+                android:text="@{viewModel.resultDataDetailPokemon.name}"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                android:textColor="@color/white"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:translationZ="100dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/addMyPokemon"
+                tools:text="skydoves" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:background="@color/colorPrimary"
+                android:elevation="9dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.CardView" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image"
+                android:layout_width="190dp"
+                android:layout_height="190dp"
+                android:layout_marginBottom="20dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:translationZ="100dp"
+                app:layout_constraintBottom_toBottomOf="@id/header"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/ribbonRecyclerView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/name"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/weight"
+                style="@style/TextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@{viewModel.resultDataDetailPokemon.weightString}"
+                android:textSize="21sp"
+                app:layout_constraintEnd_toStartOf="@id/height"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ribbonRecyclerView"
+                tools:text="24.0 KG" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/height"
+                style="@style/TextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.resultDataDetailPokemon.heightString}"
+                android:textSize="21sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/weight"
+                app:layout_constraintTop_toTopOf="@id/weight"
+                tools:text="11 M" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/weight_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Berat"
+                android:textColor="#8effffff"
+                app:layout_constraintEnd_toStartOf="@id/height"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/weight"
+                tools:text="Weight" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/height_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tinggi"
+                android:textColor="#8effffff"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/weight"
+                app:layout_constraintTop_toBottomOf="@id/height" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/stats_title"
+                style="@style/TextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Status"
+                android:textColor="@color/white_93"
+                android:textSize="21sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/weight_title" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/baseStatusRecyclerView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="16dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/stats_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/addMyPokemon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/header"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_margin="10dp"
+                app:cornerRadius="15dp"
+                android:text="Catch My Pokemon"
+                android:textAllCaps="false"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</layout>
